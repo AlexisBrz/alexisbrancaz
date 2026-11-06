@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Alexis Brancaz</title>
+<meta name="description" content="Alexis Brancaz, French visual artist and filmmaker based in Reykjavík, working across video installation, expanded cinema and film (digital and 16mm).">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..600,0..100;1,9..144,300..600,0..100&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#141414;
+    --mute:#8a8a86;
+    --rule:#e6e4df;
+    --paper:#ffffff;
+    --pencil:#d0473f;      /* the coloured-pencil red from the Puce drawings */
+    --gutter:clamp(18px,3vw,40px);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:"Fraunces",Georgia,serif;
+    font-variation-settings:"SOFT" 100;font-optical-sizing:auto;
+    font-size:18px;line-height:1.45;
+    text-align:justify;text-align-last:left;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none}
+  a:hover{color:var(--pencil)}
+  img{display:block;width:100%;height:auto}
+  sup{font-size:.62em;vertical-align:.55em;letter-spacing:.02em}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:20;
+    display:flex;justify-content:space-between;align-items:baseline;
+    padding:18px var(--gutter) 14px;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+  .logo{font-size:23px;letter-spacing:.005em}
+  .logo span{color:var(--mute)}
+  .menu-btn{
+    background:none;border:0;font:inherit;font-size:18px;color:inherit;cursor:pointer;
+    padding:4px 0;
+  }
+  .menu-btn:hover{color:var(--pencil)}
+
+  /* ---------- menu ---------- */
+  .menu{
+    position:fixed;inset:0;z-index:30;background:var(--paper);
+    padding:18px var(--gutter) 40px;overflow:auto;
+    opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s;
+  }
+  .menu.open{opacity:1;visibility:visible}
+  .menu-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:9vh}
+  .menu ol{list-style:none;columns:1}
+  .menu li{font-size:clamp(26px,4.2vw,46px);line-height:1.18}
+  .menu li a{display:inline-block}
+  .menu li .sl{color:var(--mute);margin-right:.06em}
+  .menu .util{margin-top:5vh;display:flex;gap:1.6em;font-size:clamp(22px,3vw,30px)}
+  .menu .util a{color:var(--ink)}
+  .menu .util a:hover{color:var(--pencil)}
+  .menu a.current{color:var(--pencil)}
+
+  /* ---------- index ---------- */
+  .intro{
+    padding:10vh var(--gutter) 12vh;max-width:760px;
+    font-size:clamp(20px,2.1vw,25px);line-height:1.32;
+  }
+  .intro em{font-style:italic}
+  .works{padding:10vh var(--gutter) 10vh}
+  .entry{display:block;margin:0 0 16vh}
+  /* the hang: entries drift across the page */
+  .w-a{width:min(64%,980px);margin-left:0}
+  .w-b{width:min(44%,640px);margin-left:auto;margin-right:6%}
+  .w-c{width:min(56%,860px);margin-left:18%}
+  .w-d{width:min(38%,560px);margin-left:8%}
+  .w-e{width:min(70%,1080px);margin-left:auto}
+  .w-f{width:min(48%,720px);margin-left:34%}
+  .entry figure{position:relative}
+  .entry img{background:#f3f2ef}
+  .entry .cap{
+    display:flex;gap:.45em;align-items:baseline;margin-top:10px;font-size:18px;
+  }
+  .entry .cap .t{transition:color .2s}
+  .entry .cap .y{color:var(--ink)}
+  .entry:hover .cap .t{color:var(--pencil)}
+
+  /* ---------- project ---------- */
+  .project{padding:6vh var(--gutter) 6vh}
+  .p-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4em 1em;margin-bottom:4vh}
+  .p-head h1{font-weight:400;font-size:clamp(34px,5.4vw,72px);line-height:1.02;letter-spacing:-.01em}
+  .p-head .yr{font-size:clamp(20px,2.4vw,30px);color:var(--ink)}
+  .hero{margin-bottom:6vh;cursor:zoom-in}
+  .hero img{max-height:86vh;width:auto;max-width:100%}
+  .p-body{display:grid;grid-template-columns:minmax(220px,1fr) 2.2fr;gap:var(--gutter);align-items:start}
+  .meta{position:sticky;top:78px;font-size:16px;line-height:1.45}
+  .meta dl{display:grid;gap:12px}
+  .meta dt{color:var(--mute);font-size:14px;letter-spacing:.04em;text-transform:lowercase}
+  .meta dd ol{list-style:none;display:grid;gap:6px}
+  .meta .watch{display:inline-block;margin-top:18px;border-bottom:1px solid currentColor;padding-bottom:1px}
+  .text{max-width:640px;font-size:clamp(18px,1.45vw,20px);line-height:1.5}
+  .text p+p{margin-top:1em}
+  .text blockquote{font-style:italic;margin:0 0 1em}
+  .gallery{margin-top:7vh;display:grid;gap:12px}
+  .gallery figure{cursor:zoom-in}
+  .g1{grid-template-columns:1fr}
+  .g2{grid-template-columns:1fr 1fr}
+  .g3{grid-template-columns:1fr 1fr 1fr}
+  .gallery figcaption{font-size:14px;color:var(--mute);margin-top:6px}
+  .pn{
+    display:flex;justify-content:space-between;gap:2em;margin-top:14vh;font-size:18px;
+  }
+  .pn a .sl{color:var(--mute)}
+  .pn .lab{display:block;font-size:13px;color:var(--mute);letter-spacing:.05em;text-transform:lowercase}
+  .pn .nx{text-align:right;margin-left:auto}
+
+  /* ---------- cv / contact ---------- */
+  .page{padding:8vh var(--gutter) 8vh;display:grid;grid-template-columns:minmax(200px,1fr) 2.2fr;gap:var(--gutter)}
+  .page h1{font-weight:400;font-size:clamp(34px,5.4vw,72px);line-height:1}
+  .page .lede{font-size:clamp(20px,2vw,24px);line-height:1.36;max-width:720px;margin-bottom:8vh}
+  .cv-head{margin-bottom:7vh;font-size:20px;line-height:1.4}
+  .cv section{margin-bottom:6vh}
+  .cv h2{font-weight:400;font-size:14px;letter-spacing:.06em;text-transform:lowercase;color:var(--mute);margin-bottom:12px}
+  .cv ul{list-style:none;display:grid;gap:8px;max-width:820px}
+  .cv li{display:grid;grid-template-columns:6.4em 1fr;gap:1em}
+  .cv li .d{color:var(--mute)}
+  .cv li i{font-style:italic}
+  .contact-list{display:grid;gap:4vh;font-size:clamp(22px,2.6vw,32px);line-height:1.2}
+  .contact-list small{display:block;font-size:14px;letter-spacing:.06em;text-transform:lowercase;color:var(--mute);margin-bottom:6px}
+  .copy-btn{font:inherit;font-size:15px;background:none;border:1px solid var(--rule);padding:3px 10px;margin-left:.6em;cursor:pointer;color:var(--mute);vertical-align:middle}
+  .copy-btn:hover{color:var(--pencil);border-color:var(--pencil)}
+
+  footer{
+    padding:20px var(--gutter) 26px;display:flex;justify-content:space-between;gap:1em;flex-wrap:wrap;
+    font-size:15px;color:var(--mute);
+  }
+
+  /* ---------- lightbox ---------- */
+  .lb{position:fixed;inset:0;z-index:50;background:#fff;display:none;align-items:center;justify-content:center;padding:56px 70px}
+  .lb.open{display:flex}
+  .lb img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+  .lb button{position:absolute;background:none;border:0;font:inherit;font-size:18px;cursor:pointer;color:var(--ink);padding:10px}
+  .lb button:hover{color:var(--pencil)}
+  .lb .x{top:12px;right:var(--gutter)}
+  .lb .pv{left:12px;top:50%;transform:translateY(-50%)}
+  .lb .nv{right:12px;top:50%;transform:translateY(-50%)}
+  .lb .ct{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:14px;color:var(--mute)}
+
+  .view{animation:fade .45s ease both}
+  @keyframes fade{from{opacity:0}to{opacity:1}}
+
+  @media (max-width:820px){
+    body{font-size:17px}
+    .w-a,.w-b,.w-c,.w-d,.w-e,.w-f{width:100%;margin-left:0;margin-right:0}
+    .w-b,.w-d{width:78%}
+    .w-b{margin-left:auto}
+    .entry{margin-bottom:11vh}
+    .p-body,.page{grid-template-columns:1fr}
+    .meta{position:static}
+    .g3{grid-template-columns:1fr 1fr}
+    .lb{padding:50px 12px}
+    .lb .pv,.lb .nv{top:auto;bottom:6px;transform:none}
+  }
+  @media (prefers-reduced-motion:reduce){.view{animation:none}.menu{transition:none}}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#">Alexis Brancaz</a>
+  <button class="menu-btn" id="openMenu" aria-expanded="false" aria-controls="menu">Menu</button>
+</header>
+
+<nav class="menu" id="menu" aria-label="Works">
+  <div class="menu-top">
+    <a class="logo" href="#">Alexis Brancaz</a>
+    <button class="menu-btn" id="closeMenu">Close</button>
+  </div>
+  <ol id="menuList"></ol>
+  <div class="util"><a href="#images">images</a><a href="#cv">cv</a><a href="#contact">contact</a></div>
+</nav>
+
+<main id="app"></main>
+
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button class="x" id="lbX">Close</button>
+  <button class="pv" id="lbP" aria-label="Previous image">←</button>
+  <img id="lbImg" alt="">
+  <button class="nv" id="lbN" aria-label="Next image">→</button>
+  <div class="ct" id="lbC"></div>
+</div>
+
+<script>
+/* ============ CONTENT ============ */
+const WORKS = [
+  {
+    id:"puce", title:"Puce.", year:2026, kind:"Solo exhibition, drawings",
+    cover:"puce-2", w:"w-a",
+    meta:[
+      ["exhibition","<i>Puce.</i>, solo exhibition, Á milli, Reykjavík, IS, 2026"],
+      ["works",["<i>Manufacture, Variations 2</i><br>coloured pencil on paper, aluminium frame, 50 × 71 cm",
+               "<i>Stage 1</i><br>coloured pencil on paper, aluminium frame, 37 × 52 cm",
+               "<i>Manufacture, Variations 1</i><br>coloured pencil on paper, aluminium frame, 51 × 72 cm"]]
+    ],
+    text:[],
+    hero:"puce-2",
+    galleries:[ {cols:2, imgs:["puce-1","puce-3"], caps:["Manufacture, Variations 2","Manufacture, Variations 1"]} ],
+    heroCap:"Stage 1. View from the show <i>Puce.</i>, Á milli, Reykjavík, 2026."
+  },
+  {
+    id:"seconds", title:"Seconds", year:2026, kind:"Film, 13′42″",
+    cover:"seconds-1", w:"w-b",
+    meta:[
+      ["medium","4K film; cinema DCP, full container (1.90)"],
+      ["duration","13′42″"],
+      ["language","Icelandic"],
+      ["shown","Graduation exhibition, MA, HFBK Hamburg, DE, 2026"]
+    ],
+    link:{href:"https://vimeo.com/1236850468", label:"Watch the video"},
+    text:[
+      "Inspired by Don DeLillo’s novel <i>Zero K</i>, which imagines a remote facility devoted to cryonics (the science of freezing the newly dead against the day when cures exist for whatever brought about their end), <i>Seconds</i> (2026) is narrated by an unnamed third voice. It tells of the passing of Kristin, who has joined a compound in which patients suspend their biological time in cryonic preservation capsules: a process that restores and maintains their physical forms but seemingly erodes their consciousness. Meanwhile, the visuals are reminiscent of a day from the past.",
+      "The plot engages and subverts Teilhard de Chardin’s idea of an evolution ‘ever upward toward greater consciousness and greater love’, culminating in the Omega Point, a transcendent union ‘with all those who, from every direction, have made the same ascent. For everything that rises must converge.’ Unable, by the same token, to embrace this ostensibly scientific version of religion’s perennial vision, the narrator refuses to countenance the dream and characterises it, from the outset, in bitterly sceptical terms. Viewing cryonics as dubious science, the film depicts it as a kind of ultimate bait-and-switch: a pod that turns out to be just a coffin after all. Will one’s ‘second life’ commence in the cryonic pod, or when one thaws out?",
+      "<i>Seconds</i> undercuts the cryonic premise, characterised as science awash in irrepressible fantasy, and anatomises the yearning of the twenty-first century: the desire for immortality that cloaks a death wish like a tampon in a banana peel.",
+      "Overall, <i>Seconds</i> reflects on the idea of artificially extended life and attempts to imagine a shifted relationship to mortality, to the experience and temporality of ‘life’. It responds to the real and imminent possibility that life, under contemporary technological conditions, need no longer be bounded by death, but might extend indefinitely, in ways currently difficult to imagine."
+    ],
+    hero:"seconds-1",
+    heroCap:"View from the graduation exhibition, MA, HFBK Hamburg, 2026.",
+    galleries:[ {cols:2, imgs:["seconds-2","seconds-3","seconds-4","seconds-5","seconds-6","seconds-7","seconds-8","seconds-9"], label:"Stills"} ]
+  },
+  {
+    id:"a-short-disgression", title:"A short disgression.", year:2025, kind:"Sound installation",
+    cover:"digression-1", w:"w-c",
+    meta:[
+      ["medium","Sound installation; wood, horn speakers"],
+      ["duration","30 min"],
+      ["dimensions","4 × 2 × 1 m"],
+      ["shown","<i>I will show you a toad tonight.</i>, group exhibition, Savvala, Latvia, 2025"]
+    ],
+    text:[
+      "<i>A short disgression</i> (2025) is a sound installation that imagines an inner monologue: self-generated, possibly nonstop, spoken in a single low tone by a third-person voice. “Everything we do is an appearance,” the voice states. “It’s all layers. You put on, you take off.” <i>Disgression</i> is littered with unfulfilled wants: denied conclusions, thwarted desires, unresolved mysteries, gnomic statements. It plays with the sense of things and their definitions, such as ‘define, irrational: not based on reason or clear thinking.’",
+      "We are always more confident in our reasoning than we should be. Overconfidence, expert and general alike, is one of our most common illusions. Consider ideology: a necessary tool for sorting the massive influx of information. Could ideology itself be a cognitive illusion, a necessary fiction? Yes. We must create and employ an ideology to function, and we do that work through thinking prone to systemic (even factual) errors."
+    ],
+    hero:"digression-1",
+    heroCap:"View from the group exhibition <i>I will show you a toad tonight.</i>, Savvala, Latvia, 2025.",
+    galleries:[ {cols:2, imgs:["digression-2","digression-3"]} ]
+  },
+  {
+    id:"fantasia", title:"Fantasia", year:2025, kind:"16mm film, 7′",
+    cover:"fantasia-10", w:"w-d",
+    meta:[
+      ["medium","16mm (Kodak 250D / 50D), 2K scan; colour, sound"],
+      ["duration","7′"]
+    ],
+    text:[
+      "<blockquote>“It is one of the peculiarities of the imagination that it is always at the end of an era.” (Wallace Stevens)</blockquote>",
+      "Describing “experienced time” as three-dimensional snapshots, Julian Barbour notes that a movie could easily be assembled from their linear configuration, because evidence for time’s duration is held in their particulars; many contain memories of other snapshots. The brain in any instant contains several stills of a movie, corresponding to different positions of objects we think we see moving, and it is this collection of stills, all present in one Now, that stands in psychophysical parallel with the motion we actually see. Time’s arrow does not connect a line of instants; it exists simultaneously in each Now, and material things are simply parts of Nows, our memories pictures of other Nows within this Now, like snapshots in an album. Each Now is a world unto itself, yet these richly structured Nows “know” about one another because they literally contain one another in essential respects.",
+      "In the desert, one never knows what day it is: if a minute has passed, or an hour. Uncertainty reigns; stillness reigns. <i>Fantasia</i> is about memory seen through geology and cosmology, and the way the past is constantly with us, shaped above all by the desert’s spacetime suspension. What Barbour calls “special Nows,” or “time capsules” (fixed patterns that create the appearance of motion, change, or history) allow us to see perfect stillness as the reality behind the turbulence we experience. All geological formations, rock strata in particular, constitute a record of deep, epochal time and are time capsules par excellence. The human body and brain can also be considered time capsules, and in this quantum understanding of temporality, the phenomenon of the specious present, as well as the actual seeing of motion, is embedded in the structure of such individual Nows.",
+      "In <i>Fantasia</i> the rocks are the starting point of the human, and the end."
+    ],
+    hero:"fantasia-8",
+    heroCap:"Still.",
+    galleries:[ {cols:3, imgs:["fantasia-1","fantasia-10","fantasia-2","fantasia-3","fantasia-4","fantasia-5","fantasia-6","fantasia-7","fantasia-9"], label:"Stills"} ]
+  },
+  {
+    id:"end-of-the-day", title:"It feel like the end of the day.", year:2025, kind:"Expanded cinema, 16mm loop",
+    cover:"end-of-day-1", w:"w-e",
+    meta:[
+      ["medium","Video / audio, 5′ (loop)"],
+      ["installation","Flight cases, Eiki NT-2 projector, 16mm looper, speakers, projection screen"],
+      ["shown","Annual Exhibition, HFBK Hamburg, 2025"]
+    ],
+    link:{href:"https://vimeo.com/1064017821", label:"Watch the video"},
+    text:[
+      "Movement in cinema, whether analog or digital, is created by the interplay of stillness and transition: a series of static frames that, when projected in sequence, come alive with motion. <i>It feel like the end of the day.</i> explores this process as a prism through which we can examine our world, one defined by perpetual change and fleeting spectacle. The film takes this idea and pushes it further, blending the abstraction of AI-generated animation with the material imperfection of 16mm film."
+    ],
+    hero:"end-of-day-1",
+    heroCap:"Still.",
+    galleries:[ {cols:2, imgs:["end-of-day-3","end-of-day-2"], caps:["View from the Annual Exhibition 2025, HFBK.",""]} ]
+  },
+  {
+    id:"a-tiny-detail", title:"It only takes a tiny detail to bring about a break-up.", year:2025, kind:"Video, 3′55″",
+    cover:"tiny-detail-1", w:"w-f",
+    meta:[
+      ["medium","Video / audio; Midjourney, Luma Dream Machine, ElevenLabs"],
+      ["duration","3′55″"],
+      ["shown","<i>Anamnesis</i>, duo exhibition with Eetu Vekki, Gallery 21, Hamburg, 2025"]
+    ],
+    link:{href:"https://youtu.be/7th_0BCnsgY", label:"Watch the video"},
+    text:[
+      "<i>It only takes a tiny detail to bring about a break-up.</i> is a work about the slow catastrophe of consciousness: the grinding, Sunday-heavy weight of existing in a species that has already outlived its own purpose. Assembled from fragments of DeLillo, Baudrillard and Ballard, the narration does not so much speak as accumulate: a voice depositing sediment, looping back, trailing off, always arriving at the same impassable threshold.",
+      "Where the earlier work in the series circled memory and image, this one descends further, into entropy, into ennui as biological condition, into the suspicion that evolution has already crested and we are simply coasting the long slope down. The text does not mourn this. It observes it, with the flat affect of something that has been running for a thousand million years and is beginning, quietly, to want to stop.",
+      "The work is concerned with waiting as structure: the waiting inside events, the waiting after them, the way time pools and stagnates rather than passes. Sleep as pseudodeath. History on automatic pilot, disembodied, circling. What holds the work together is precisely what it describes: a thread, a detail, the infinitesimal crack through which everything eventually disappears."
+    ],
+    hero:"tiny-detail-1",
+    heroCap:"Still.",
+    galleries:[ {cols:3, imgs:["tiny-detail-2","tiny-detail-3","tiny-detail-4"], label:"View from <i>Anamnesis</i>, duo exhibition with Eetu Vekki, Gallery 21, Hamburg, 2025."} ]
+  },
+  {
+    id:"funny-what-you-dont-recall", title:"It’s funny what you don’t recall.", year:2024, kind:"Video, 3′55″",
+    cover:"funny-recall-1", w:"w-a",
+    meta:[
+      ["medium","Video / audio; Midjourney, Luma Dream Machine, ElevenLabs"],
+      ["duration","3′55″"],
+      ["shown","Open space, SÍM Barn exhibition hall, Korpúlfsstaðir, Reykjavík, 2024<br><i>Fragile Passivity</i>, ICAT, 2025"]
+    ],
+    link:{href:"https://youtu.be/yzV0nPuT5Ho", label:"Watch the video"},
+    text:[
+      "<i>It’s Funny What You Don’t Recall</i> is a meditation on the failure of memory in an era of total image saturation. Drawing on Baudrillardian frameworks of simulation and the immanence of desire in the image, the work stages a kind of ghost in the machine, narrated by a consciousness that is no longer entirely its own, circling the impossibility of lived experience in a world that has already been replaced by its representation.",
+      "The work operates as both confession and inventory: a voice that compiles, memorises and archives in a desperate loop against death and disappearance, only to find that the act of recording accelerates the very forgetting it resists. What emerges is not nostalgia but something stranger: a nostalgia for the future, for a present that dissolved before it could be inhabited.",
+      "Made using AI-generated visuals, the piece folds its own methodology into its argument. The images are not illustrations of a text; they are evidence of the condition the text describes: hyperreal, weightless, convincing, and somehow already gone. The result is a work that performs its own catastrophe rather than representing it: an open parenthesis, a feedback loop, an ending that has been running since the beginning.",
+      "<i>It’s Funny What You Don’t Recall</i> is the inaugural work in an ongoing series examining what it means to narrate a present moving too fast to hold."
+    ],
+    hero:"funny-recall-1",
+    heroCap:"View from the open space, SÍM Barn exhibition hall, Korpúlfsstaðir, 2024.",
+    galleries:[ {cols:2, imgs:["funny-recall-2","funny-recall-3"], caps:["View from <i>Fragile Passivity</i>, ICAT, 2025.","Still."]} ]
+  },
+  {
+    id:"the-preserving-machine", title:"The Preserving Machine", year:2024, kind:"Two-channel video installation, 11′",
+    cover:"preserving-machine-1", w:"w-b",
+    meta:[
+      ["medium","Two-channel video / audio"],
+      ["duration","11′"],
+      ["shown","Annual Exhibition, HFBK Hamburg, 2024<br><i>compose–decompose</i>, EKA Gallery, 2025<br>Single-channel version screened at film festivals"]
+    ],
+    link:{href:"https://youtu.be/yJDNX3Xpijg", label:"Watch the video"},
+    text:[
+      "<i>The Preserving Machine</i> takes its title from Philip K. Dick’s 1953 short story, in which an inventor builds a device that converts musical compositions into living animals, only for those creatures, once released into the wild, to mutate beyond recognition. Departing from Dick’s premise, the work meditates on forms of suspended and simulated life: artificial intelligence, cryogenically frozen bodies, counterfeit ecologies, and the strange afterlives of preserved things.",
+      "Through a montage of footage and voice-over, the viewer is led through a darkened gallery of cabinets, specimens and obsolete machinery: a kind of museum of failed permanence. Cast-off skins shimmer under spotlights, ancient mirrors no longer reflect, and half-living bodies stand idle, their workings fused by rust. Plaster wings encrusted with garnets recall Dick’s mutated birds; a fluid colossus secreting crimson foam echoes the alien ocean of Lem’s <i>Solaris</i>. Time loops, slows, and finally stalls. The viewer drifts between archaeology and prophecy, between the organic and the engineered, until their own body, by the end, is described as that of a ghost.",
+      "Conceived as a two-channel video installation, the work has also been presented in a single-channel version at film festivals. It speaks to a hybrid threshold in contemporary life, a moment caught between the natural and the artificial, no longer quite either, where preservation itself has become a haunted gesture."
+    ],
+    hero:"preserving-machine-1",
+    heroCap:"Still.",
+    galleries:[ {cols:3, imgs:["preserving-machine-2","preserving-machine-4","preserving-machine-3"], caps:["View from the Annual Exhibition 2024, HFBK.","View from <i>compose–decompose</i>, EKA Gallery, 2025.","View from <i>compose–decompose</i>, EKA Gallery, 2025."]} ]
+  }
+];
+
+const CV = {
+  head:["Born 1999 (FR)","Lives and works in Reykjavík, IS"],
+  sections:[
+    ["education",[
+      ["2026","(September) Mountain School of Arts (MSA^), Los Angeles, US"],
+      ["2023–2026","MFA Time-Based Media, class of Angela Bulloch, HFBK Hamburg, DE"],
+      ["2021–2022","Iceland University of the Arts, Reykjavík, IS"],
+      ["2020","Erasmus exchange, Iceland University of the Arts, Reykjavík, IS"],
+      ["2018–2021","BFA In Situ, Royal Academy of Fine Arts, Antwerp, BE"],
+      ["2017–2018","Preparatory year, Les Arcades, Issy-les-Moulineaux, FR"]
+    ]],
+    ["awards and grants",[
+      ["2025","Master’s graduation grant (Examensförderung)"],
+      ["2024","Project grant, Freundeskreis der HFBK"]
+    ]],
+    ["workshops and residencies",[
+      ["2028","(upcoming) May–June, Skaftfell Art Center, IS"],
+      ["2025","March, CPH:DOX Academy+, Art Hybrid II, DK"],
+      ["2024","September, SÍM Residency, IS"],
+      ["","March, CPH:DOX Academy+, led by Tinne Zenner, DK"],
+      ["2023","August, Savvala Residency, LV"],
+      ["2022","July, DAMA_Future workshop, Narva Art Residency, EE"],
+      ["","April, KUNO_Ghosthology VI workshop, Vilnius Academy of Arts, LT"]
+    ]],
+    ["solo exhibition",[
+      ["2026","August, <i>PUCE</i>, Á milli, Reykjavík, IS"]
+    ]],
+    ["selected group exhibitions",[
+      ["2027","(upcoming) September, Sender, duo exhibition with Julia Koch, Hamburg, DE"],
+      ["2025","October, <i>Becoming: Composing vs. Decomposing</i>, EKA Gallery, Tallinn, EE"],
+      ["","September–December, Savvala, 6th season, LV"],
+      ["","April, <i>Anamnesis</i>, duo exhibition with Eetu Vekki, Galerie 21, Vorwerk-Stift, Hamburg, DE"],
+      ["","February, HFBK Rundgang, Hamburg, DE"],
+      ["","February, <i>Fragile Uncertainty</i>, curated by Nadja Quante, ICAT 01-HFBK, Hamburg, DE"],
+      ["2024","October, <i>The Elephant In The Room, In The Room The Elephant.</i>, ICAT HFBK, Hamburg, DE"],
+      ["","SÍM, Korpúlfsstaðir, Reykjavík, IS"],
+      ["","HFBK Rundgang, Hamburg, DE"],
+      ["","<i>Passage</i>, Deichtorhallen – Sammlung Falckenberg, Hamburg, DE"],
+      ["2022","<i>Aðgát skal höfð / Tread Carefully</i>, Einar Jónsson Sculpture Museum, Reykjavík, IS"],
+      ["","<i>The Water Beneath</i>, The Factory, Djúpavík, IS"],
+      ["","<i>The Now The End</i>, curated by COUNCIL+, Gallery Garden AEDEN, Berlin, DE"],
+      ["2021","Kunst op de Campus, Drie Eiken Campus, University of Antwerp, BE"],
+      ["","<i>Come Closer</i>, h-<span></span>-s gallery, Antwerp, BE"],
+      ["","<i>Oh my sun, I forgot to recharge myself as I was charging my phone</i>, h-<span></span>-s gallery, Antwerp, BE"],
+      ["","Hallen #2, Berlin, DE"],
+      ["","<i>Concrete/Steypa</i>, Hjalteyri, IS"],
+      ["2020","Second-year exhibition, Korpúlfsstaðir, Reykjavík, IS"],
+      ["2019","<i>The Behaviour of the Cloud</i>, curated by Nicolás Lamas, Wintergarden, Antwerp, BE"],
+      ["","Kunst op de Campus, Drie Eiken Campus, University of Antwerp, BE"],
+      ["","Northern Light Parade, Antwerp, BE"]
+    ]],
+    ["screenings",[
+      ["2024","<i>It’s Funny What You Don’t Recall.</i>, Artefact AI Film Festival, with MK2"],
+      ["","<i>The Preserving Machine</i>, Fol Film Festival, Paris, FR"],
+      ["","<i>The Preserving Machine</i>, Video Club Festival, Echoes of Decay, Amsterdam, NL"]
+    ]]
+  ]
+};
+
+const EMAIL = "brancazalexis@gmail.com";
+
+/* ============ HELPERS ============ */
+const SUP = {"0":"⁰","1":"¹","2":"²","3":"³","4":"⁴","5":"⁵","6":"⁶","7":"⁷","8":"⁸","9":"⁹"};
+const sup = y => String(y);
+const src = k => `img/${k}.jpg`;
+const strip = s => s.replace(/<[^>]+>/g,"");
+const app = document.getElementById("app");
+let lbList = [], lbIdx = 0;
+
+function fig(k, cap, alt, eager){
+  return `<figure data-lb="${k}"><img src="${src(k)}" alt="${strip(alt||cap||"")}" ${eager?'fetchpriority="high"':'loading="lazy"'} decoding="async">${cap?`<figcaption>${cap}</figcaption>`:""}</figure>`;
+}
+
+/* ============ VIEWS ============ */
+function renderMenu(cur){
+  document.getElementById("menuList").innerHTML = WORKS.map(w =>
+    `<li><a href="#${w.id}" class="${w.id===cur?"current":""}">${w.title.toLowerCase()}<sup>${sup(w.year)}</sup></a></li>`
+  ).join("");
+  document.querySelectorAll(".menu .util a").forEach(a=>a.classList.toggle("current", a.getAttribute("href")==="#"+cur));
+}
+
+function viewIndex(){
+  document.title = "Alexis Brancaz";
+  return `<div class="view">
+    <section class="works" aria-label="Selected works">
+      ${WORKS.map((w,i)=>`
+        <a class="entry ${w.w}" href="#${w.id}">
+          ${fig(w.cover, "", `${w.title} (${w.year})`, i<2)}
+          <div class="cap"><span class="t">${w.title}</span><span class="y">${w.year}</span></div>
+        </a>`).join("")}
+    </section></div>`;
+}
+
+function viewWork(w){
+  document.title = `${w.title} | Alexis Brancaz`;
+  const i = WORKS.indexOf(w);
+  const prev = WORKS[(i-1+WORKS.length)%WORKS.length], next = WORKS[(i+1)%WORKS.length];
+  const meta = w.meta.map(([k,v]) => `<div><dt>${k}</dt><dd>${Array.isArray(v)?`<ol>${v.map(x=>`<li>${x}</li>`).join("")}</ol>`:v}</dd></div>`).join("");
+  const gals = (w.galleries||[]).map(g=>`
+    <div class="gallery g${g.cols}">
+      ${g.imgs.map((k,j)=>fig(k, g.caps?g.caps[j]:"", (g.caps&&g.caps[j])||`${w.title}, ${g.label?strip(g.label):"image"} ${j+1}`)).join("")}
+    </div>${g.label?`<p class="gallery-label" style="font-size:14px;color:var(--mute);margin-top:8px">${g.label}</p>`:""}`).join("");
+  return `<article class="project view">
+    <div class="p-head"><h1>${w.title}</h1><span class="yr">${w.year}</span></div>
+    <div class="hero" data-lb="${w.hero}"><img src="${src(w.hero)}" alt="${strip(w.title)}, ${strip(w.heroCap||"")}" fetchpriority="high">
+      ${w.heroCap?`<p style="font-size:14px;color:var(--mute);margin-top:8px">${w.heroCap}</p>`:""}</div>
+    <div class="p-body">
+      <aside class="meta">
+        <dl>${meta}</dl>
+        ${w.link?`<a class="watch" href="${w.link.href}" target="_blank" rel="noopener">${w.link.label} ↗</a>`:""}
+      </aside>
+      <div>
+        ${w.text.length?`<div class="text">${w.text.map(p=>p.startsWith("<blockquote")?p:`<p>${p}</p>`).join("")}</div>`:""}
+        ${gals}
+      </div>
+    </div>
+    <nav class="pn" aria-label="More works">
+      <a href="#${prev.id}"><span class="lab">previous</span>${prev.title}</a>
+      <a class="nx" href="#${next.id}"><span class="lab">next</span>${next.title}</a>
+    </nav>
+  </article>`;
+}
+
+function viewCV(){
+  document.title = "CV | Alexis Brancaz";
+  return `<div class="page view">
+    <h1>cv</h1>
+    <div class="cv">
+      <p class="cv-head">${CV.head.join("<br>")}<br><a href="mailto:${EMAIL}">${EMAIL}</a></p>
+      ${CV.sections.map(([h,rows])=>`<section><h2>${h}</h2><ul>${rows.map(([d,t])=>`<li><span class="d">${d}</span><span>${t}</span></li>`).join("")}</ul></section>`).join("")}
+    </div></div>`;
+}
+
+function viewContact(){
+  document.title = "Contact | Alexis Brancaz";
+  return `<div class="page view" style="display:block">
+    <div class="contact-list"><a href="mailto:${EMAIL}">${EMAIL}</a></div>
+  </div>`;
+}
+
+/* ============ ROUTER ============ */
+function route(){
+  const h = decodeURIComponent(location.hash.slice(1));
+  const w = WORKS.find(x=>x.id===h);
+  const images = h==="images";
+  if(!(images && allMode)){
+    app.innerHTML = w ? viewWork(w) : h==="cv" ? viewCV() : h==="contact" ? viewContact() : viewIndex();
+    window.scrollTo(0,0);
+  }
+  renderMenu(h);
+  closeMenu();
+  if(images){
+    allMode = true; lbList = ALL_IMAGES.slice(); showLb(0);
+  } else {
+    allMode = false; lb.classList.remove("open");
+    lbList = [...app.querySelectorAll("[data-lb]")].map(el=>el.dataset.lb);
+  }
+  const cb = document.getElementById("copyMail");
+  if(cb) cb.addEventListener("click", async ()=>{
+    try{ await navigator.clipboard.writeText(EMAIL); cb.textContent="copied"; }
+    catch(e){ cb.textContent="select & copy"; }
+  });
+}
+
+/* ============ MENU ============ */
+const menu = document.getElementById("menu"), openBtn = document.getElementById("openMenu");
+function closeMenu(){ menu.classList.remove("open"); openBtn.setAttribute("aria-expanded","false"); }
+openBtn.addEventListener("click", ()=>{ menu.classList.add("open"); openBtn.setAttribute("aria-expanded","true"); });
+document.getElementById("closeMenu").addEventListener("click", closeMenu);
+menu.addEventListener("click", e=>{ if(e.target.closest("a")) closeMenu(); });
+
+/* ============ LIGHTBOX (project pages only) ============ */
+const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbC = document.getElementById("lbC");
+/* every image of every work, in menu order: the "images" slideshow */
+const ALL_IMAGES = [...new Set(WORKS.flatMap(w=>[w.hero, ...(w.galleries||[]).flatMap(g=>g.imgs)]))];
+let allMode = false;
+function closeLb(){
+  lb.classList.remove("open");
+  if(allMode){ allMode=false; location.hash=""; }
+}
+function showLb(i){ lbIdx=(i+lbList.length)%lbList.length; lbImg.src=src(lbList[lbIdx]); lbC.textContent=`${lbIdx+1} / ${lbList.length}`; lb.classList.add("open");
+  [1,-1].forEach(d=>{ const im=new Image(); im.src=src(lbList[(lbIdx+d+lbList.length)%lbList.length]); }); }
+app.addEventListener("click", e=>{
+  const f = e.target.closest("[data-lb]");
+  if(!f || e.target.closest("a.entry")) return;
+  showLb(lbList.indexOf(f.dataset.lb));
+});
+document.getElementById("lbX").onclick = closeLb;
+document.getElementById("lbP").onclick = ()=>showLb(lbIdx-1);
+document.getElementById("lbN").onclick = ()=>showLb(lbIdx+1);
+lb.addEventListener("click", e=>{ if(e.target===lb) closeLb(); });
+document.addEventListener("keydown", e=>{
+  if(e.key==="Escape"){ if(lb.classList.contains("open")) closeLb(); closeMenu(); }
+  if(!lb.classList.contains("open")) return;
+  if(e.key==="ArrowLeft") showLb(lbIdx-1);
+  if(e.key==="ArrowRight") showLb(lbIdx+1);
+});
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
