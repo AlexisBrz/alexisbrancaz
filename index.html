@@ -102,6 +102,11 @@
   .meta dl{display:grid;gap:12px}
   .meta dt{color:var(--mute);font-size:14px;letter-spacing:.04em;text-transform:lowercase}
   .meta dd ol{list-style:none;display:grid;gap:6px}
+  .meta .line{color:var(--ink);text-align:left}
+  .text.clamped{max-height:9em;overflow:hidden;
+    -webkit-mask-image:linear-gradient(to bottom,#000 45%,transparent);mask-image:linear-gradient(to bottom,#000 45%,transparent)}
+  .more-btn{display:inline-block;margin-top:10px;background:none;border:0;padding:0 0 1px;font:inherit;font-size:17px;color:var(--ink);border-bottom:1px solid currentColor;cursor:pointer}
+  .more-btn:hover{color:var(--pencil)}
   .meta .watch{display:inline-block;margin-top:18px;border-bottom:1px solid currentColor;padding-bottom:1px}
   .text{max-width:640px;font-size:clamp(18px,1.45vw,20px);line-height:1.5}
   .text p+p{margin-top:1em}
@@ -202,26 +207,16 @@ const WORKS = [
   {
     id:"puce", title:"Puce.", year:2026, kind:"Solo exhibition, drawings",
     cover:"puce-2", w:"w-a",
-    meta:[
-      ["exhibition","<i>Puce.</i>, solo exhibition, Á milli, Reykjavík, IS, 2026"],
-      ["works",["<i>Manufacture, Variations 2</i><br>coloured pencil on paper, aluminium frame, 50 × 71 cm",
-               "<i>Stage 1</i><br>coloured pencil on paper, aluminium frame, 37 × 52 cm",
-               "<i>Manufacture, Variations 1</i><br>coloured pencil on paper, aluminium frame, 51 × 72 cm"]]
-    ],
+    line:"Three drawings, coloured pencil on paper, aluminium frames.",
     text:[],
     hero:"puce-2",
-    galleries:[ {cols:2, imgs:["puce-1","puce-3"], caps:["Manufacture, Variations 2","Manufacture, Variations 1"]} ],
-    heroCap:"Stage 1. View from the show <i>Puce.</i>, Á milli, Reykjavík, 2026."
+    galleries:[ {cols:2, imgs:["puce-1","puce-3"], caps:["<i>Manufacture, Variations 2</i>, coloured pencil on paper, aluminium frame, 50 × 71 cm.","<i>Manufacture, Variations 1</i>, coloured pencil on paper, aluminium frame, 51 × 72 cm."]} ],
+    heroCap:"<i>Stage 1</i>, coloured pencil on paper, aluminium frame, 37 × 52 cm. View from the show <i>Puce.</i>, Á milli, Reykjavík, 2026."
   },
   {
     id:"seconds", title:"Seconds", year:2026, kind:"Film, 13′42″",
     cover:"seconds-1", w:"w-b",
-    meta:[
-      ["medium","4K film; cinema DCP, full container (1.90)"],
-      ["duration","13′42″"],
-      ["language","Icelandic"],
-      ["shown","Graduation exhibition, MA, HFBK Hamburg, DE, 2026"]
-    ],
+    line:"4K film, colour, sound, 13′42″.",
     link:{href:"https://vimeo.com/1236850468", label:"Watch the video"},
     text:[
       "Inspired by Don DeLillo’s novel <i>Zero K</i>, which imagines a remote facility devoted to cryonics (the science of freezing the newly dead against the day when cures exist for whatever brought about their end), <i>Seconds</i> (2026) is narrated by an unnamed third voice. It tells of the passing of Kristin, who has joined a compound in which patients suspend their biological time in cryonic preservation capsules: a process that restores and maintains their physical forms but seemingly erodes their consciousness. Meanwhile, the visuals are reminiscent of a day from the past.",
@@ -236,12 +231,7 @@ const WORKS = [
   {
     id:"a-short-disgression", title:"A short disgression.", year:2025, kind:"Sound installation",
     cover:"digression-1", w:"w-c",
-    meta:[
-      ["medium","Sound installation; wood, horn speakers"],
-      ["duration","30 min"],
-      ["dimensions","4 × 2 × 1 m"],
-      ["shown","<i>I will show you a toad tonight.</i>, group exhibition, Savvala, Latvia, 2025"]
-    ],
+    line:"Sound installation, wood, horn speakers, 30 min, 4 × 2 × 1 m.",
     text:[
       "<i>A short disgression</i> (2025) is a sound installation that imagines an inner monologue: self-generated, possibly nonstop, spoken in a single low tone by a third-person voice. “Everything we do is an appearance,” the voice states. “It’s all layers. You put on, you take off.” <i>Disgression</i> is littered with unfulfilled wants: denied conclusions, thwarted desires, unresolved mysteries, gnomic statements. It plays with the sense of things and their definitions, such as ‘define, irrational: not based on reason or clear thinking.’",
       "We are always more confident in our reasoning than we should be. Overconfidence, expert and general alike, is one of our most common illusions. Consider ideology: a necessary tool for sorting the massive influx of information. Could ideology itself be a cognitive illusion, a necessary fiction? Yes. We must create and employ an ideology to function, and we do that work through thinking prone to systemic (even factual) errors."
@@ -253,10 +243,7 @@ const WORKS = [
   {
     id:"fantasia", title:"Fantasia", year:2025, kind:"16mm film, 7′",
     cover:"fantasia-10", w:"w-d",
-    meta:[
-      ["medium","16mm (Kodak 250D / 50D), 2K scan; colour, sound"],
-      ["duration","7′"]
-    ],
+    line:"16mm film, colour, sound, 7′.",
     text:[
       "<blockquote>“It is one of the peculiarities of the imagination that it is always at the end of an era.” (Wallace Stevens)</blockquote>",
       "Describing “experienced time” as three-dimensional snapshots, Julian Barbour notes that a movie could easily be assembled from their linear configuration, because evidence for time’s duration is held in their particulars; many contain memories of other snapshots. The brain in any instant contains several stills of a movie, corresponding to different positions of objects we think we see moving, and it is this collection of stills, all present in one Now, that stands in psychophysical parallel with the motion we actually see. Time’s arrow does not connect a line of instants; it exists simultaneously in each Now, and material things are simply parts of Nows, our memories pictures of other Nows within this Now, like snapshots in an album. Each Now is a world unto itself, yet these richly structured Nows “know” about one another because they literally contain one another in essential respects.",
@@ -270,11 +257,7 @@ const WORKS = [
   {
     id:"end-of-the-day", title:"It feel like the end of the day.", year:2025, kind:"Expanded cinema, 16mm loop",
     cover:"end-of-day-1", w:"w-e",
-    meta:[
-      ["medium","Video / audio, 5′ (loop)"],
-      ["installation","Flight cases, Eiki NT-2 projector, 16mm looper, speakers, projection screen"],
-      ["shown","Annual Exhibition, HFBK Hamburg, 2025"]
-    ],
+    line:"16mm loop installation, projector, looper, speakers, screen, 5′.",
     link:{href:"https://vimeo.com/1064017821", label:"Watch the video"},
     text:[
       "Movement in cinema, whether analog or digital, is created by the interplay of stillness and transition: a series of static frames that, when projected in sequence, come alive with motion. <i>It feel like the end of the day.</i> explores this process as a prism through which we can examine our world, one defined by perpetual change and fleeting spectacle. The film takes this idea and pushes it further, blending the abstraction of AI-generated animation with the material imperfection of 16mm film."
@@ -286,11 +269,7 @@ const WORKS = [
   {
     id:"a-tiny-detail", title:"It only takes a tiny detail to bring about a break-up.", year:2025, kind:"Video, 3′55″",
     cover:"tiny-detail-1", w:"w-f",
-    meta:[
-      ["medium","Video / audio; Midjourney, Luma Dream Machine, ElevenLabs"],
-      ["duration","3′55″"],
-      ["shown","<i>Anamnesis</i>, duo exhibition with Eetu Vekki, Gallery 21, Hamburg, 2025"]
-    ],
+    line:"Video, colour, sound, 3′55″.",
     link:{href:"https://youtu.be/7th_0BCnsgY", label:"Watch the video"},
     text:[
       "<i>It only takes a tiny detail to bring about a break-up.</i> is a work about the slow catastrophe of consciousness: the grinding, Sunday-heavy weight of existing in a species that has already outlived its own purpose. Assembled from fragments of DeLillo, Baudrillard and Ballard, the narration does not so much speak as accumulate: a voice depositing sediment, looping back, trailing off, always arriving at the same impassable threshold.",
@@ -304,11 +283,7 @@ const WORKS = [
   {
     id:"funny-what-you-dont-recall", title:"It’s funny what you don’t recall.", year:2024, kind:"Video, 3′55″",
     cover:"funny-recall-1", w:"w-a",
-    meta:[
-      ["medium","Video / audio; Midjourney, Luma Dream Machine, ElevenLabs"],
-      ["duration","3′55″"],
-      ["shown","Open space, SÍM Barn exhibition hall, Korpúlfsstaðir, Reykjavík, 2024<br><i>Fragile Passivity</i>, ICAT, 2025"]
-    ],
+    line:"Video, colour, sound, 3′55″.",
     link:{href:"https://youtu.be/yzV0nPuT5Ho", label:"Watch the video"},
     text:[
       "<i>It’s Funny What You Don’t Recall</i> is a meditation on the failure of memory in an era of total image saturation. Drawing on Baudrillardian frameworks of simulation and the immanence of desire in the image, the work stages a kind of ghost in the machine, narrated by a consciousness that is no longer entirely its own, circling the impossibility of lived experience in a world that has already been replaced by its representation.",
@@ -323,11 +298,7 @@ const WORKS = [
   {
     id:"the-preserving-machine", title:"The Preserving Machine", year:2024, kind:"Two-channel video installation, 11′",
     cover:"preserving-machine-1", w:"w-b",
-    meta:[
-      ["medium","Two-channel video / audio"],
-      ["duration","11′"],
-      ["shown","Annual Exhibition, HFBK Hamburg, 2024<br><i>compose–decompose</i>, EKA Gallery, 2025<br>Single-channel version screened at film festivals"]
-    ],
+    line:"Two-channel video installation, colour, sound, 11′.",
     link:{href:"https://youtu.be/yJDNX3Xpijg", label:"Watch the video"},
     text:[
       "<i>The Preserving Machine</i> takes its title from Philip K. Dick’s 1953 short story, in which an inventor builds a device that converts musical compositions into living animals, only for those creatures, once released into the wild, to mutate beyond recognition. Departing from Dick’s premise, the work meditates on forms of suspended and simulated life: artificial intelligence, cryogenically frozen bodies, counterfeit ecologies, and the strange afterlives of preserved things.",
@@ -336,12 +307,11 @@ const WORKS = [
     ],
     hero:"preserving-machine-1",
     heroCap:"Still.",
-    galleries:[ {cols:3, imgs:["preserving-machine-2","preserving-machine-4","preserving-machine-3"], caps:["View from the Annual Exhibition 2024, HFBK.","View from <i>compose–decompose</i>, EKA Gallery, 2025.","View from <i>compose–decompose</i>, EKA Gallery, 2025."]} ]
+    galleries:[ {cols:3, imgs:["preserving-machine-2","preserving-machine-4","preserving-machine-3"], caps:["View from the Annual Exhibition 2024, HFBK.","View from HFBK.","View from <i>compose–decompose</i>, EKA Gallery, 2025."]} ]
   }
 ];
 
 const CV = {
-  head:["Born 1999 (FR)","Lives and works in Reykjavík, IS"],
   sections:[
     ["education",[
       ["2026","(September) Mountain School of Arts (MSA^), Los Angeles, US"],
@@ -369,6 +339,7 @@ const CV = {
     ]],
     ["selected group exhibitions",[
       ["2027","(upcoming) September, Sender, duo exhibition with Julia Koch, Hamburg, DE"],
+      ["2026","(upcoming) December, <i>Death</i>, Galerie Gruppe Motto, Hamburg, DE"],
       ["2025","October, <i>Becoming: Composing vs. Decomposing</i>, EKA Gallery, Tallinn, EE"],
       ["","September–December, Savvala, 6th season, LV"],
       ["","April, <i>Anamnesis</i>, duo exhibition with Eetu Vekki, Galerie 21, Vorwerk-Stift, Hamburg, DE"],
@@ -416,7 +387,7 @@ function fig(k, cap, alt, eager){
 /* ============ VIEWS ============ */
 function renderMenu(cur){
   document.getElementById("menuList").innerHTML = WORKS.map(w =>
-    `<li><a href="#${w.id}" class="${w.id===cur?"current":""}">${w.title.toLowerCase()}<sup>${sup(w.year)}</sup></a></li>`
+    `<li><a href="#${w.id}" class="${w.id===cur?"current":""}">${w.title.toLowerCase()}</a></li>`
   ).join("");
   document.querySelectorAll(".menu .util a").forEach(a=>a.classList.toggle("current", a.getAttribute("href")==="#"+cur));
 }
@@ -437,7 +408,6 @@ function viewWork(w){
   document.title = `${w.title} | Alexis Brancaz`;
   const i = WORKS.indexOf(w);
   const prev = WORKS[(i-1+WORKS.length)%WORKS.length], next = WORKS[(i+1)%WORKS.length];
-  const meta = w.meta.map(([k,v]) => `<div><dt>${k}</dt><dd>${Array.isArray(v)?`<ol>${v.map(x=>`<li>${x}</li>`).join("")}</ol>`:v}</dd></div>`).join("");
   const gals = (w.galleries||[]).map(g=>`
     <div class="gallery g${g.cols}">
       ${g.imgs.map((k,j)=>fig(k, g.caps?g.caps[j]:"", (g.caps&&g.caps[j])||`${w.title}, ${g.label?strip(g.label):"image"} ${j+1}`)).join("")}
@@ -448,11 +418,11 @@ function viewWork(w){
       ${w.heroCap?`<p style="font-size:14px;color:var(--mute);margin-top:8px">${w.heroCap}</p>`:""}</div>
     <div class="p-body">
       <aside class="meta">
-        <dl>${meta}</dl>
+        <p class="line">${w.line}</p>
         ${w.link?`<a class="watch" href="${w.link.href}" target="_blank" rel="noopener">${w.link.label} ↗</a>`:""}
       </aside>
       <div>
-        ${w.text.length?`<div class="text">${w.text.map(p=>p.startsWith("<blockquote")?p:`<p>${p}</p>`).join("")}</div>`:""}
+        ${w.text.length?`<div class="text clamped" id="workText">${w.text.map(p=>p.startsWith("<blockquote")?p:`<p>${p}</p>`).join("")}</div><button class="more-btn" type="button" aria-expanded="false" aria-controls="workText">Read more</button>`:""}
         ${gals}
       </div>
     </div>
@@ -468,7 +438,7 @@ function viewCV(){
   return `<div class="page view">
     <h1>cv</h1>
     <div class="cv">
-      <p class="cv-head">${CV.head.join("<br>")}<br><a href="mailto:${EMAIL}">${EMAIL}</a></p>
+      <p class="cv-head"><a href="mailto:${EMAIL}">${EMAIL}</a></p>
       ${CV.sections.map(([h,rows])=>`<section><h2>${h}</h2><ul>${rows.map(([d,t])=>`<li><span class="d">${d}</span><span>${t}</span></li>`).join("")}</ul></section>`).join("")}
     </div></div>`;
 }
@@ -497,6 +467,8 @@ function route(){
     allMode = false; lb.classList.remove("open");
     lbList = [...app.querySelectorAll("[data-lb]")].map(el=>el.dataset.lb);
   }
+  const wt = document.getElementById("workText");
+  if(wt && wt.scrollHeight <= wt.clientHeight + 4){ wt.classList.remove("clamped"); const mb=app.querySelector(".more-btn"); if(mb) mb.remove(); }
   const cb = document.getElementById("copyMail");
   if(cb) cb.addEventListener("click", async ()=>{
     try{ await navigator.clipboard.writeText(EMAIL); cb.textContent="copied"; }
@@ -523,6 +495,13 @@ function closeLb(){
 function showLb(i){ lbIdx=(i+lbList.length)%lbList.length; lbImg.src=src(lbList[lbIdx]); lbC.textContent=`${lbIdx+1} / ${lbList.length}`; lb.classList.add("open");
   [1,-1].forEach(d=>{ const im=new Image(); im.src=src(lbList[(lbIdx+d+lbList.length)%lbList.length]); }); }
 app.addEventListener("click", e=>{
+  const mb = e.target.closest(".more-btn");
+  if(mb){
+    const t = document.getElementById("workText"), open = t.classList.contains("clamped");
+    t.classList.toggle("clamped", !open); mb.setAttribute("aria-expanded", String(open)); mb.textContent = open ? "Read less" : "Read more";
+    if(!open) t.scrollIntoView({block:"nearest"});
+    return;
+  }
   const f = e.target.closest("[data-lb]");
   if(!f || e.target.closest("a.entry")) return;
   showLb(lbList.indexOf(f.dataset.lb));
