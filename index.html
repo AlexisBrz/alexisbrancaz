@@ -93,8 +93,8 @@
   /* ---------- project ---------- */
   .project{padding:6vh var(--gutter) 6vh}
   .p-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:.4em 1em;margin-bottom:4vh}
-  .p-head h1{font-weight:400;font-size:clamp(34px,5.4vw,72px);line-height:1.02;letter-spacing:-.01em}
-  .p-head .yr{font-size:clamp(20px,2.4vw,30px);color:var(--ink)}
+  .p-head h1{font-weight:400;font-size:clamp(24px,2.6vw,34px);line-height:1.15;letter-spacing:0;text-align:left}
+  .p-head .yr{font-size:clamp(24px,2.6vw,34px);color:var(--ink)}
   .hero{margin-bottom:6vh;cursor:zoom-in}
   .hero img{max-height:86vh;width:auto;max-width:100%}
   .p-body{display:grid;grid-template-columns:minmax(220px,1fr) 2.2fr;gap:var(--gutter);align-items:start}
@@ -117,6 +117,13 @@
   .g2{grid-template-columns:1fr 1fr}
   .g3{grid-template-columns:1fr 1fr 1fr}
   .gallery figcaption{font-size:14px;color:var(--mute);margin-top:6px}
+  .exhibit{max-width:640px;margin-top:12vh;font-size:clamp(17px,1.3vw,19px);line-height:1.5}
+  .exhibit h2{font-weight:400;font-size:clamp(22px,2vw,28px);margin-bottom:6px}
+  .exhibit .ex-line{margin-bottom:1em;text-align:left}
+  .exhibit p+p{margin-top:.8em}
+  .exhibit p a{border-bottom:1px solid currentColor}
+  .exhibit .ex-links{display:flex;flex-wrap:wrap;gap:.6em 1.6em;margin-top:1.4em;text-align:left}
+  .exhibit .ex-links a{border-bottom:1px solid currentColor;padding-bottom:1px}
   .pn{
     display:flex;justify-content:space-between;gap:2em;margin-top:14vh;font-size:18px;
   }
@@ -154,7 +161,7 @@
   .lb .x{top:12px;right:var(--gutter)}
   .lb .pv{left:12px;top:50%;transform:translateY(-50%)}
   .lb .nv{right:12px;top:50%;transform:translateY(-50%)}
-  .lb .ct{position:absolute;bottom:16px;left:0;right:0;text-align:center;font-size:14px;color:var(--mute)}
+  .lb .ct{position:absolute;bottom:16px;left:0;right:0;text-align:center;text-align-last:center;font-size:14px;color:var(--mute)}
 
   .view{animation:fade .45s ease both}
   @keyframes fade{from{opacity:0}to{opacity:1}}
@@ -236,6 +243,18 @@ const WORKS = [
       "<i>A short disgression</i> (2025) is a sound installation that imagines an inner monologue: self-generated, possibly nonstop, spoken in a single low tone by a third-person voice. “Everything we do is an appearance,” the voice states. “It’s all layers. You put on, you take off.” <i>Disgression</i> is littered with unfulfilled wants: denied conclusions, thwarted desires, unresolved mysteries, gnomic statements. It plays with the sense of things and their definitions, such as ‘define, irrational: not based on reason or clear thinking.’",
       "We are always more confident in our reasoning than we should be. Overconfidence, expert and general alike, is one of our most common illusions. Consider ideology: a necessary tool for sorting the massive influx of information. Could ideology itself be a cognitive illusion, a necessary fiction? Yes. We must create and employ an ideology to function, and we do that work through thinking prone to systemic (even factual) errors."
     ],
+    exhibition:{
+      title:"I will show you a toad tonight.",
+      line:"Group exhibition, Cube Nr. 4, Savvaļa, Latvia. Opening 30 August 2025.",
+      text:[
+        "The last exhibition of the season at Savvaļa’s Cube Nr. 4 was made by the artists of a nomadic residency hosted there: sculptures, drawings and a sound installation forming a single work inside and outside the cube, with outdoor sculptures shaped from local soil, plant pigments and fabric. Growing out of a residency on the natural materials of Baltic and Nordic landscapes, shared in making as well as in food, storms and night-time wildlife, the show looked at human presence within nature through slowness, tenderness and transformation. <i>A short disgression.</i> was presented there.",
+        "With Paula Zvane, Viktoria Björk, Kamilė Pikelytė, Enea Toldo, Marta Luna Valpiana, Vilhjálmur Yngvi Hjálmarsson, Eetu Vekki, Albertina Tevajärvi and Pui-Yan Fong. Residency organised by Paula Zvane, Viktoria Björk and Kamilė Pikelytė; Savvaļa was initiated by Andris Eglītis.",
+        "Supported by the State Culture Capital Foundation (VKKF)."
+      ],
+      links:[
+        {href:"https://savvala.lv/en/events", label:"Savvaļa, events"}
+      ]
+    },
     hero:"digression-1",
     heroCap:"View from the group exhibition <i>I will show you a toad tonight.</i>, Savvala, Latvia, 2025.",
     galleries:[ {cols:2, imgs:["digression-2","digression-3"]} ]
@@ -256,15 +275,15 @@ const WORKS = [
   },
   {
     id:"end-of-the-day", title:"It feel like the end of the day.", year:2025, kind:"Expanded cinema, 16mm loop",
-    cover:"end-of-day-1", w:"w-e",
+    cover:"end-of-day-5", w:"w-e",
     line:"16mm loop installation, projector, looper, speakers, screen, 5′.",
     link:{href:"https://vimeo.com/1064017821", label:"Watch the video"},
     text:[
       "Movement in cinema, whether analog or digital, is created by the interplay of stillness and transition: a series of static frames that, when projected in sequence, come alive with motion. <i>It feel like the end of the day.</i> explores this process as a prism through which we can examine our world, one defined by perpetual change and fleeting spectacle. The film takes this idea and pushes it further, blending the abstraction of AI-generated animation with the material imperfection of 16mm film."
     ],
-    hero:"end-of-day-1",
+    hero:"end-of-day-5",
     heroCap:"Still.",
-    galleries:[ {cols:2, imgs:["end-of-day-3","end-of-day-2"], caps:["View from the Annual Exhibition 2025, HFBK.",""]} ]
+    galleries:[ {cols:3, imgs:["end-of-day-4","end-of-day-3","end-of-day-2"], caps:["Still.","View from the Annual Exhibition 2025, HFBK.",""]} ]
   },
   {
     id:"a-tiny-detail", title:"It only takes a tiny detail to bring about a break-up.", year:2025, kind:"Video, 3′55″",
@@ -282,7 +301,7 @@ const WORKS = [
   },
   {
     id:"funny-what-you-dont-recall", title:"It’s funny what you don’t recall.", year:2024, kind:"Video, 3′55″",
-    cover:"funny-recall-1", w:"w-a",
+    cover:"funny-recall-4", w:"w-a",
     line:"Video, colour, sound, 3′55″.",
     link:{href:"https://youtu.be/yzV0nPuT5Ho", label:"Watch the video"},
     text:[
@@ -291,9 +310,9 @@ const WORKS = [
       "Made using AI-generated visuals, the piece folds its own methodology into its argument. The images are not illustrations of a text; they are evidence of the condition the text describes: hyperreal, weightless, convincing, and somehow already gone. The result is a work that performs its own catastrophe rather than representing it: an open parenthesis, a feedback loop, an ending that has been running since the beginning.",
       "<i>It’s Funny What You Don’t Recall</i> is the inaugural work in an ongoing series examining what it means to narrate a present moving too fast to hold."
     ],
-    hero:"funny-recall-1",
-    heroCap:"View from the open space, SÍM Barn exhibition hall, Korpúlfsstaðir, 2024.",
-    galleries:[ {cols:2, imgs:["funny-recall-2","funny-recall-3"], caps:["View from <i>Fragile Passivity</i>, ICAT, 2025.","Still."]} ]
+    hero:"funny-recall-4",
+    heroCap:"Still from the video.",
+    galleries:[ {cols:3, imgs:["funny-recall-1","funny-recall-2","funny-recall-3"], caps:["View from the open space, SÍM Barn exhibition hall, Korpúlfsstaðir, 2024.","View from <i>Fragile Passivity</i>, ICAT, 2025.","Still."]} ]
   },
   {
     id:"the-preserving-machine", title:"The Preserving Machine", year:2024, kind:"Two-channel video installation, 11′",
@@ -305,9 +324,22 @@ const WORKS = [
       "Through a montage of footage and voice-over, the viewer is led through a darkened gallery of cabinets, specimens and obsolete machinery: a kind of museum of failed permanence. Cast-off skins shimmer under spotlights, ancient mirrors no longer reflect, and half-living bodies stand idle, their workings fused by rust. Plaster wings encrusted with garnets recall Dick’s mutated birds; a fluid colossus secreting crimson foam echoes the alien ocean of Lem’s <i>Solaris</i>. Time loops, slows, and finally stalls. The viewer drifts between archaeology and prophecy, between the organic and the engineered, until their own body, by the end, is described as that of a ghost.",
       "Conceived as a two-channel video installation, the work has also been presented in a single-channel version at film festivals. It speaks to a hybrid threshold in contemporary life, a moment caught between the natural and the artificial, no longer quite either, where preservation itself has become a haunted gesture."
     ],
+    exhibition:{
+      title:"compose◠decompose",
+      line:"Group exhibition, EKA Gallery, Tallinn, 30 October – 30 November 2025. Curated by Inessa Saarits and Victoria Björk.",
+      text:[
+        "Following a cycle of growth, decay and renewal, the exhibition treated composition and decomposition as linked acts rather than opposites, with works attending to overlooked parts of the ecosystem: microorganisms, plant matter, organic systems. <i>The Preserving Machine</i> was shown there as a two-channel installation from a diorama-based series, a speculative passage through a post-human world whose remaining galleries hold traces of humanity’s legacy and future.",
+        "With Albertina Tevajärvi, Alma Bektas, Augustas Lapinskas &amp; Ditiya Ferdous, Freyja Tralla &amp; Kassandra Laur, Janne Schipper &amp; Andreas Andersen, Johanna Rotko, Julie Sjöfn Gasiglia, Kamilė Pikelytė and <a href=\"https://www.paulazvane.com/2025-composedecompose\" target=\"_blank\" rel=\"noopener\">Paula Zvane</a>, whose <i>Fur Creatures</i> (from the series <i>Tactile sensitivity</i>, 2023–2024), steel skeletons covered in soft pelts, hover between animal and plant.",
+        "Supported by EKA Gallery, the Cultural Endowment of Estonia and the Icelandic Visual Arts Fund."
+      ],
+      links:[
+        {href:"https://echogonewrong.com/photo-reportage-from-the-exhibition-compose%E2%97%A0decompose-at-the-eka-gallery/", label:"Photo reportage, Echo Gone Wrong"},
+        {href:"https://www.paulazvane.com/2025-composedecompose", label:"Paula Zvane, compose◠decompose"}
+      ]
+    },
     hero:"preserving-machine-1",
     heroCap:"Still.",
-    galleries:[ {cols:3, imgs:["preserving-machine-2","preserving-machine-4","preserving-machine-3"], caps:["View from the Annual Exhibition 2024, HFBK.","View from HFBK.","View from <i>compose–decompose</i>, EKA Gallery, 2025."]} ]
+    galleries:[ {cols:1, imgs:["preserving-machine-5"], caps:["Still."]}, {cols:3, imgs:["preserving-machine-2","preserving-machine-4","preserving-machine-3"], caps:["View from the Annual Exhibition 2024, HFBK.","View from HFBK.","View from <i>compose◠decompose</i>, EKA Gallery, Tallinn, 2025."]} ]
   }
 ];
 
@@ -394,14 +426,7 @@ function renderMenu(cur){
 
 function viewIndex(){
   document.title = "Alexis Brancaz";
-  return `<div class="view">
-    <section class="works" aria-label="Selected works">
-      ${WORKS.map((w,i)=>`
-        <a class="entry ${w.w}" href="#${w.id}">
-          ${fig(w.cover, "", `${w.title} (${w.year})`, i<2)}
-          <div class="cap"><span class="t">${w.title}</span><span class="y">${w.year}</span></div>
-        </a>`).join("")}
-    </section></div>`;
+  return `<div class="view home"></div>`;
 }
 
 function viewWork(w){
@@ -424,6 +449,12 @@ function viewWork(w){
       <div>
         ${w.text.length?`<div class="text clamped" id="workText">${w.text.map(p=>p.startsWith("<blockquote")?p:`<p>${p}</p>`).join("")}</div><button class="more-btn" type="button" aria-expanded="false" aria-controls="workText">Read more</button>`:""}
         ${gals}
+        ${w.exhibition?`<section class="exhibit" aria-label="Exhibition">
+          <h2><i>${w.exhibition.title}</i></h2>
+          <p class="ex-line">${w.exhibition.line}</p>
+          ${w.exhibition.text.map(p=>`<p>${p}</p>`).join("")}
+          <p class="ex-links">${w.exhibition.links.map(l=>`<a href="${l.href}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("")}</p>
+        </section>`:""}
       </div>
     </div>
     <nav class="pn" aria-label="More works">
