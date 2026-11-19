@@ -283,9 +283,9 @@ const WORKS = [
     galleries:[ {cols:3, imgs:["end-of-day-4","end-of-day-3","end-of-day-2"], caps:["Still.","View from the Annual Exhibition 2025, HFBK.",""]} ]
   },
   {
-    id:"a-tiny-detail", title:"It only takes a tiny detail to bring about a break-up.", year:2025, kind:"Video, 3′55″",
+    id:"a-tiny-detail", title:"It only takes a tiny detail to bring about a break-up.", year:2025, kind:"Video, 7′40″",
     cover:"tiny-detail-1", w:"w-f",
-    line:"Video, colour, sound, 3′55″.",
+    line:"Video, colour, sound, 7′40″.",
     link:{href:"https://youtu.be/7th_0BCnsgY", label:"Watch the video"},
     text:[
       "<i>It only takes a tiny detail to bring about a break-up.</i> is a work about the slow catastrophe of consciousness: the grinding, Sunday-heavy weight of existing in a species that has already outlived its own purpose. Assembled from fragments of DeLillo, Baudrillard and Ballard, the narration does not so much speak as accumulate: a voice depositing sediment, looping back, trailing off, always arriving at the same impassable threshold.",
@@ -326,7 +326,7 @@ const WORKS = [
       line:"Group exhibition, EKA Gallery, Tallinn, 30 October – 30 November 2025. Curated by Inessa Saarits and Victoria Björk.",
       text:[
         "Following a cycle of growth, decay and renewal, the exhibition treated composition and decomposition as linked acts rather than opposites, with works attending to overlooked parts of the ecosystem: microorganisms, plant matter, organic systems. <i>The Preserving Machine</i> was shown there as a two-channel installation from a diorama-based series, a speculative passage through a post-human world whose remaining galleries hold traces of humanity’s legacy and future.",
-        "With Albertina Tevajärvi, Alma Bektas, Augustas Lapinskas &amp; Ditiya Ferdous, Freyja Tralla &amp; Kassandra Laur, Janne Schipper &amp; Andreas Andersen, Johanna Rotko, Julie Sjöfn Gasiglia, Kamilė Pikelytė and <a href=\"https://www.paulazvane.com/2025-composedecompose\" target=\"_blank\" rel=\"noopener\">Paula Zvane</a>, whose <i>Fur Creatures</i> (from the series <i>Tactile sensitivity</i>, 2023–2024), steel skeletons covered in soft pelts, hover between animal and plant.",
+        "With Albertina Tevajärvi, Alma Bektas, Augustas Lapinskas &amp; Ditiya Ferdous, Freyja Tralla &amp; Kassandra Laur, Janne Schipper &amp; Andreas Andersen, Johanna Rotko, Julie Sjöfn Gasiglia, Kamilė Pikelytė and Paula Zvane.",
         "Supported by EKA Gallery, the Cultural Endowment of Estonia and the Icelandic Visual Arts Fund."
       ],
       links:[
@@ -441,7 +441,7 @@ function viewWork(w){
     <div class="p-body">
       <aside class="meta">
         <p class="line">${w.line}</p>
-        ${w.link?`<a class="watch" href="${w.link.href}" target="_blank" rel="noopener">${w.link.label} ↗</a>`:""}
+        ${w.link?`<a class="watch" href="${w.link.href}" target="_blank" rel="noopener">${w.link.label}</a>`:""}
       </aside>
       <div>
         ${w.text.length?`<div class="text clamped" id="workText">${w.text.map(p=>p.startsWith("<blockquote")?p:`<p>${p}</p>`).join("")}</div><button class="more-btn" type="button" aria-expanded="false" aria-controls="workText">Read more</button>`:""}
@@ -450,7 +450,7 @@ function viewWork(w){
           <h2><i>${w.exhibition.title}</i></h2>
           <p class="ex-line">${w.exhibition.line}</p>
           ${w.exhibition.text.map(p=>`<p>${p}</p>`).join("")}
-          <p class="ex-links">${w.exhibition.links.map(l=>`<a href="${l.href}" target="_blank" rel="noopener">${l.label} ↗</a>`).join("")}</p>
+          <p class="ex-links">${w.exhibition.links.map(l=>`<a href="${l.href}" target="_blank" rel="noopener">${l.label}</a>`).join("")}</p>
         </section>`:""}
       </div>
     </div>
