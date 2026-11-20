@@ -14,7 +14,8 @@
     --rule:#e6e4df;
     --paper:#ffffff;
     --pencil:#d0473f;      /* the coloured-pencil red from the Puce drawings */
-    --gutter:clamp(18px,3vw,40px);
+    --gutter:clamp(24px,8vw,140px);
+    --edge:clamp(18px,3vw,40px);
   }
   *{box-sizing:border-box;margin:0;padding:0}
   html{-webkit-text-size-adjust:100%}
@@ -34,7 +35,7 @@
   header{
     position:sticky;top:0;z-index:20;
     display:flex;justify-content:space-between;align-items:baseline;
-    padding:18px var(--gutter) 14px;
+    padding:18px var(--edge) 14px;
     background:rgba(255,255,255,.94);
     backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
   }
@@ -49,7 +50,7 @@
   /* ---------- menu ---------- */
   .menu{
     position:fixed;inset:0;z-index:30;background:var(--paper);
-    padding:18px var(--gutter) 40px;overflow:auto;
+    padding:18px var(--edge) 40px;overflow:auto;
     opacity:0;visibility:hidden;transition:opacity .25s ease,visibility .25s;
   }
   .menu.open{opacity:1;visibility:visible}
@@ -111,6 +112,9 @@
   .gallery{margin-top:7vh;display:grid;gap:12px}
   .gallery figure{cursor:zoom-in}
   .g1{grid-template-columns:1fr}
+  .gallery.strip{display:block;max-width:640px}
+  .gallery.strip figure{margin:0;line-height:0}
+  .gallery.strip img{display:block;width:100%;height:auto}
   .g2{grid-template-columns:1fr 1fr}
   .g3{grid-template-columns:1fr 1fr 1fr}
   .gallery figcaption{font-size:14px;color:var(--mute);margin-top:6px}
@@ -258,7 +262,7 @@ const WORKS = [
   },
   {
     id:"fantasia", title:"Fantasia", year:2025, kind:"16mm film, 7′",
-    cover:"fantasia-10", w:"w-d",
+    cover:"fantasia-main", w:"w-d",
     line:"16mm film, colour, sound, 7′.",
     text:[
       "<blockquote>“It is one of the peculiarities of the imagination that it is always at the end of an era.” (Wallace Stevens)</blockquote>",
@@ -266,9 +270,9 @@ const WORKS = [
       "In the desert, one never knows what day it is: if a minute has passed, or an hour. Uncertainty reigns; stillness reigns. <i>Fantasia</i> is about memory seen through geology and cosmology, and the way the past is constantly with us, shaped above all by the desert’s spacetime suspension. What Barbour calls “special Nows,” or “time capsules” (fixed patterns that create the appearance of motion, change, or history) allow us to see perfect stillness as the reality behind the turbulence we experience. All geological formations, rock strata in particular, constitute a record of deep, epochal time and are time capsules par excellence. The human body and brain can also be considered time capsules, and in this quantum understanding of temporality, the phenomenon of the specious present, as well as the actual seeing of motion, is embedded in the structure of such individual Nows.",
       "In <i>Fantasia</i> the rocks are the starting point of the human, and the end."
     ],
-    hero:"fantasia-8",
+    hero:"fantasia-main",
     heroCap:"Still.",
-    galleries:[ {cols:3, imgs:["fantasia-1","fantasia-10","fantasia-2","fantasia-3","fantasia-4","fantasia-5","fantasia-6","fantasia-7","fantasia-9"], label:"Stills"} ]
+    galleries:[ {strip:true, imgs:["fantasia-s01","fantasia-s02","fantasia-s03","fantasia-s04","fantasia-s05","fantasia-s06","fantasia-s07","fantasia-s08","fantasia-s09","fantasia-s10","fantasia-s11","fantasia-s12","fantasia-s13","fantasia-s14","fantasia-s15","fantasia-s16","fantasia-s17","fantasia-s18","fantasia-s19","fantasia-s20","fantasia-s21"]} ]
   },
   {
     id:"end-of-the-day", title:"It feel like the end of the day.", year:2025, kind:"Expanded cinema, 16mm loop",
@@ -431,13 +435,13 @@ function viewWork(w){
   const i = WORKS.indexOf(w);
   const prev = WORKS[(i-1+WORKS.length)%WORKS.length], next = WORKS[(i+1)%WORKS.length];
   const gals = (w.galleries||[]).map(g=>`
-    <div class="gallery g${g.cols}">
+    <div class="gallery ${g.strip?"strip":"g"+g.cols}">
       ${g.imgs.map((k,j)=>fig(k, g.caps?g.caps[j]:"", (g.caps&&g.caps[j])||`${w.title}, ${g.label?strip(g.label):"image"} ${j+1}`)).join("")}
     </div>${g.label?`<p class="gallery-label" style="font-size:14px;color:var(--mute);margin-top:8px">${g.label}</p>`:""}`).join("");
   return `<article class="project view">
     <div class="p-head"><h1>${w.title}</h1><span class="yr">${w.year}</span></div>
-    <div class="hero" data-lb="${w.hero}"><img src="${src(w.hero)}" alt="${strip(w.title)}, ${strip(w.heroCap||"")}" fetchpriority="high">
-      ${w.heroCap?`<p style="font-size:14px;color:var(--mute);margin-top:8px">${w.heroCap}</p>`:""}</div>
+    ${w.hero?`<div class="hero" data-lb="${w.hero}"><img src="${src(w.hero)}" alt="${strip(w.title)}, ${strip(w.heroCap||"")}" fetchpriority="high">
+      ${w.heroCap?`<p style="font-size:14px;color:var(--mute);margin-top:8px">${w.heroCap}</p>`:""}</div>`:""}
     <div class="p-body">
       <aside class="meta">
         <p class="line">${w.line}</p>
@@ -514,7 +518,7 @@ menu.addEventListener("click", e=>{ if(e.target.closest("a")) closeMenu(); });
 /* ============ LIGHTBOX (project pages only) ============ */
 const lb = document.getElementById("lb"), lbImg = document.getElementById("lbImg"), lbC = document.getElementById("lbC");
 /* every image of every work, in menu order: the "images" slideshow */
-const ALL_IMAGES = [...new Set(WORKS.flatMap(w=>[w.hero, ...(w.galleries||[]).flatMap(g=>g.imgs)]))];
+const ALL_IMAGES = [...new Set(WORKS.flatMap(w=>[w.hero, ...(w.galleries||[]).flatMap(g=>g.imgs)]).filter(Boolean))];
 let allMode = false;
 function closeLb(){
   lb.classList.remove("open");
